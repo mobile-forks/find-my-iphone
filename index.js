@@ -15,7 +15,14 @@ var findmyphone = {
 			return callback("Please define apple_id / password");
 		}
 
-		var newLogin = !findmyphone.hasOwnProperty("jar") && findmyphone.last_apple_id != findmyphone.apple_id;
+		var newLogin = true;
+		if (!findmyphone.hasOwnProperty("jar") //an session exists
+			&& (findmyphone.last_apple_id != null) //there has not been a previous login
+			&& (findmyphone.last_apple_id.toLowerCase() === findmyphone.apple_id.toLowerCase())) //and the apple id name is the same
+		{
+			newLogin = false;
+		}
+		console.log("newLogin value: " + newLogin);
 		if (newLogin) {
 			findmyphone.jar = request.jar();
 			findmyphone.last_apple_id = findmyphone.apple_id;

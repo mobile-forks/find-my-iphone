@@ -185,8 +185,8 @@ var findmyphone = {
 				if (Array.isArray(json.results) &&
 					json.results.length > 0 &&
 					json.results[0].hasOwnProperty("formatted_address")) {
-
-					return callback(err, json.results[0].formatted_address);
+					
+					return callback(err, json.results[0].formatted_address, json.results[0]);
 				}
 			}
 			return callback(err);
